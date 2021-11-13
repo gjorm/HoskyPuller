@@ -7,7 +7,7 @@
 	>Note 1: Dont download the source files, and don<t install either of these with Docker.
 	>Note 2: All of the cardano-node files will end up in the HoskyPuller folder and the cardano-wallet files will end up in a new folder inside of the HoskyPuller folder with a naming convention similar to 'cardano-wallet-*date*-linux64'
 	
-4) Rename the 'cardano-wallet-*date*-linux64' folder to <code>cardano-wallet</code> for the wallet scripts to work.
+4) Rename the 'cardano-wallet-*date*-linux64' folder to 'cardano-wallet' for the wallet scripts to work.
 
 5) Hosky Puller has a single dependancy: jq. Install jq with <code>sudo apt install jq -y</code> or with whatever package manager your distro uses
 
