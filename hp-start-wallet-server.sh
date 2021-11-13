@@ -25,7 +25,7 @@
 
 export "CARDANO_NODE_SOCKET_PATH=~/Dev/HoskyPuller/node.socket"
 gProgS=$(./cardano-cli query tip --mainnet | jq '.syncProgress' | tr -d '"')
-#multiply the float value by 100 to get an integer value
+#use bc to test the equality of the progress value
 gProgI=$(bc <<< "$gProgS >= 100")
 if [ "$gProgI" -eq 1 ]; then
 	cardano-wallet/./cardano-wallet serve --mainnet --node-socket "$CARDANO_NODE_SOCKET_PATH" --database cardano-wallet --token-metadata-server https://tokens.cardano.org
