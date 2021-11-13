@@ -13,7 +13,7 @@ Bash scripts to automate pulling Hosky from the Doggy Bowl. Uses cardano-node, c
 
 5) Hosky Puller has a single dependancy: jq. Install jq with 'sudo apt install jq -y' or with whatever package manager your distro uses
 
-6) Run './hp-start-cardano-node.sh'
+6) Run '<code>./hp-start-cardano-node.sh</code>'
 
 7) Wait until cardano-node achieves sync with the blockchain (see next step for progress update). This will take at least several hours on the first start up.
 
