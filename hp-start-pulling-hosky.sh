@@ -34,22 +34,21 @@ function getNewestTransactionId {
 	walletIdF=$1
 	nowDate=$(getTimeStamp)
 	
-	trans=$(cardano-wallet/./cardano-wallet transaction list "$walletIdF" --start "$startDate" --end "$nowDate" --order descending | jq '.[0]?')
+	trans=$(cardano-wallet/./cardano-wallet transaction list "$walletIdF" --start "$startDate" --end "$nowDate" --order descending)
 	
 	#the time stamp window is very small and could produce a null result
 	if [ "$trans" = null ]; then
 		exit 0
 	fi
+
+	#reassign trans to this latest outgoing transaction
+	trans=$(echo "$trans" | jq '.[] | select(.direction == "outgoing")')
 			
-	direction=$(echo "$trans" | jq '.direction' | tr -d '"') #grab the direction field from the transaction data
-	if [ "$direction" = "outgoing" ]; then #make sure it is outgoing
-		stat=$(echo "$trans" | jq '.status' | tr -d '"') #grab the status field from the transaction data
-		if [ "$stat" = "in_ledger" ]; then #make sure it is not a failed transaction
-			#output the the tx id and then break
-			echo "$trans" | jq '.id' | tr -d '"'
-		fi
-	fi
-	
+	stat=$(echo "$trans" | jq '.status' | tr -d '"') #grab the status field from the transaction data
+	if [ "$stat" = "in_ledger" ]; then #make sure it is not a failed transaction
+		#output the the tx id and then break
+		echo "$trans" | jq '.id' | tr -d '"'
+	fi	
 }
 
 #make sure the wallet balance is > 3,000,000 lovelace
