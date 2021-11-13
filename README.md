@@ -34,3 +34,4 @@
 	<li>e) Load your new Hosky pulling wallet with the amount of Ada you can afford to blow and run hp-start-pulling-hosky.sh at your own risk.</li>
 </ul>
 
+12) If you don't care if the transactions make it (the transaction checking is slowed down by network congestion) and just wish to spam the doggy bowl address, use <code>./hp-start-spamming-doggy-bowl.sh</code>. Please dont topple my favorite blockchain too badly...
