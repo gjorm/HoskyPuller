@@ -23,7 +23,7 @@
 # *
 # *
 
-export "CARDANO_NODE_SOCKET_PATH=~/Dev/HoskyPuller/node.socket"
+export CARDANO_NODE_SOCKET_PATH=~/Dev/HoskyPuller/node.socket
 
 rm node.socket 2> /dev/null
 ./cardano-node run --socket-path "$CARDANO_NODE_SOCKET_PATH"

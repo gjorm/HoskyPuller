@@ -46,7 +46,7 @@ function getNewestTransactionId {
 			
 	stat=$(echo "$trans" | jq '.status' | tr -d '"') #grab the status field from the transaction data
 	if [ "$stat" = "in_ledger" ]; then #make sure it is not a failed transaction
-		#output the the tx id and then break
+		#output the the tx id
 		echo "$trans" | jq '.id' | tr -d '"'
 	fi	
 }
@@ -106,6 +106,10 @@ if [ "$(testWalletSyncStatus "$walletId")" != "ready" ]; then
 	exit 1
 fi
 
+#load and store password for usage with sending transactions
+echo "Enter your wallets password for the Hosky Puller script to use when sending transactions."
+read -s password
+
 #print which address is being sent to
 echo -e "Sending pulls to address: $doggyBowlAddr\n"
 #print off inital balance
@@ -120,10 +124,11 @@ echo "Sending off first pull"
 #grab the newest transaction, then loop until there is no more Ada
 while [ "$(ensureGoodBalance "$walletId")" = true ]
 do
+	#[ "$latestTx" != "$lastGoodTx" ]
 	latestTx=$(getNewestTransactionId "$walletId")
 	if [ "$latestTx" != "$lastGoodTx" ]; then
 		lastGoodTx=$latestTx
-		sendTransaction "$walletId"
+		yes "$password" | sendTransaction "$walletId"
 		numPulls=$((numPulls + 1))
 		echo "Sending pull number $numPulls"
 		echo -e "Wallet balance: $(getBalance "$walletId")\n"

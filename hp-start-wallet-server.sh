@@ -23,7 +23,7 @@
 # *
 # *
 
-export "CARDANO_NODE_SOCKET_PATH=~/Dev/HoskyPuller/node.socket"
+export CARDANO_NODE_SOCKET_PATH=~/Dev/HoskyPuller/node.socket
 gProgS=$(./cardano-cli query tip --mainnet | jq '.syncProgress' | tr -d '"')
 #use bc to test the equality of the progress value
 gProgI=$(bc <<< "$gProgS >= 100")
