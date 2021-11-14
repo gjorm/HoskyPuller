@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # *
-# * hp-start-pulling-hosky.sh
+# * hp-start-spamming-doggy-bowl.sh
 # *
 # * Copyright 2021 gjorm <https://github.com/gjorm>
 # *
@@ -122,7 +122,7 @@ echo "Sending off first pull"
 #grab the newest transaction, then loop until there is no more Ada
 while [ "$(ensureGoodBalance "$walletId")" = true ]
 do
-	yes "$password" | sendTransaction "$walletId"
+	error=$(yes "$password" | sendTransaction "$walletId")
 	numPulls=$((numPulls + 1))
 	echo "Sending pull number $numPulls"
 	echo -e "Wallet balance: $(getBalance "$walletId")\n"
