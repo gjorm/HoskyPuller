@@ -4,10 +4,10 @@
 	>The zip file that github makes has all of the scripts the 'HoskyPuller-main' folder so the next step is to copy/cut and paste these back into Dev/HoskyPuller
 
 3) Download both the cardano-wallet (https://github.com/input-output-hk/cardano-wallet/releases) and cardano-node (https://hydra.iohk.io/job/Cardano/cardano-node/cardano-node-linux/latest-finished) linux pre-built binary files and unzip.
-<ul>
+<blockquote><ul>
 	<li>Note 1: Don't download the source files, and don't install either of these with Docker.
 	<li>Note 2: All of the cardano-node files will end up in the HoskyPuller folder and the cardano-wallet files will end up in a new folder inside of the HoskyPuller folder with a naming convention similar to 'cardano-wallet-*date*-linux64'
-</ul>
+</blockquote></ul>
 4) Rename the 'cardano-wallet-*date*-linux64' folder to 'cardano-wallet' for the wallet scripts to work.
 
 5) Hosky Puller has a single dependancy: jq. Install jq with <code>sudo apt install jq -y</code> or with whatever package manager your distro uses
@@ -27,12 +27,12 @@
 	>Once it achieves sync, run <code>./hp-start-pulling-hosky.sh</code>. Now Hosky Puller will begin blowing your Ada on this worthless shitcoin.
 
 11) Read and mind these important notes about the Hosky Puller scripts (these are not optional):
-<ul>
+<blockquote><ul>
 	<li>a) Use Hosky Puller at your own risk! These are poorly written buggy garbage and could fail in an awful manner. By using these scripts you acknowledge that you take on all liability in the event that something goes wrong and you lose funds. If you dont want this liability, then do not use these scripts.</li>
 	<li>b) Do NOT use your main wallet with the Hosky Puller scripts! The Hosky Puller script will draw down whatever Ada is in your wallet down to less than 1 Ada and it does not care what wallet you give it. It also does not check to see what Hosky has come back due to the doggy bowl being out of service with some frequency. The only thing stopping it is you manually having to enter your password.</li>
 	<li>c) Before running the hp-start-pulling-hosky.sh script, create a new wallet in your wallet manager of choice and write down the recovery pass phrase. Send a small amount of Ada to it and then use it for the Hosky Puller script.</li>
 	<li>d) Test the Hosky Puller script by replacing the address located in the hp-doggy-bowl-address text file with an address of your own separate wallet and run the script to test the functionality. If 2 Ada shows up in this other wallet that you own, then consider pulling the trigger and put the doggy bowl address back into the hp-doggy-bowl-address text file.</li>
 	<li>e) Load your new Hosky pulling wallet with the amount of Ada you can afford to blow and run hp-start-pulling-hosky.sh at your own risk.</li>
-</ul>
+</blockquote></ul>
 
 12) If you don't care if the transactions make it (the transaction checking is slowed down by network congestion) and just wish to spam the doggy bowl address, use <code>./hp-start-spamming-doggy-bowl.sh</code>. Please dont topple my favorite blockchain too badly...
