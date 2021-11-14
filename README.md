@@ -5,8 +5,8 @@
 
 3) Download both the cardano-wallet (https://github.com/input-output-hk/cardano-wallet/releases) and cardano-node (https://hydra.iohk.io/job/Cardano/cardano-node/cardano-node-linux/latest-finished) linux pre-built binary files and unzip.
 <ul>
-	><li>Note 1: Don't download the source files, and don't install either of these with Docker.
-	><li>Note 2: All of the cardano-node files will end up in the HoskyPuller folder and the cardano-wallet files will end up in a new folder inside of the HoskyPuller folder with a naming convention similar to 'cardano-wallet-*date*-linux64'
+	<li>Note 1: Don't download the source files, and don't install either of these with Docker.
+	<li>Note 2: All of the cardano-node files will end up in the HoskyPuller folder and the cardano-wallet files will end up in a new folder inside of the HoskyPuller folder with a naming convention similar to 'cardano-wallet-*date*-linux64'
 </ul>
 4) Rename the 'cardano-wallet-*date*-linux64' folder to 'cardano-wallet' for the wallet scripts to work.
 
