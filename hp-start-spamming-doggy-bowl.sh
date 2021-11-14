@@ -126,7 +126,7 @@ do
 	numPulls=$((numPulls + 1))
 	echo "Sending pull number $numPulls"
 	echo -e "Wallet balance: $(getBalance "$walletId")\n"
-	sleep 1
+	sleep 3
 done
 
 

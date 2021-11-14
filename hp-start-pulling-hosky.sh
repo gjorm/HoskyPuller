@@ -133,7 +133,7 @@ do
 		echo "Sending pull number $numPulls"
 		echo -e "Wallet balance: $(getBalance "$walletId")\n"
 	fi
-	sleep 1
+	sleep 3
 done
 
 
