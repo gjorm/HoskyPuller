@@ -25,31 +25,31 @@
 
 #Get the date and time in ISO 8601 format, UTC time
 function getTimeStamp {
-	theDate=$(date -u -Iseconds)
+        theDate=$(date -d '-1 hour' -u -Iseconds)
         echo "${theDate%??????}"Z
 }
 
 #grab the newest transaction in the transaction list
 function getNewestTransactionId {
-	walletIdF=$1
-	nowDate=$(getTimeStamp)
-	
-	trans=$(cardano-wallet/./cardano-wallet transaction list "$walletIdF" --start "$startDate" --end "$nowDate" --order descending)
-	
-	#the time stamp window is very small and could produce a null result
-	if [ "$trans" = null ]; then
-		exit 0
-	fi
+        walletIdF=$1
+        
+        trans=$(cardano-wallet/./cardano-wallet transaction list "$walletIdF" --start "$startDate" --order descending)
+        
+        #the time stamp window is very small and could produce a null result
+        if [ "$trans" = "[]" ]; then
+                exit 0
+        fi
 
-	#reassign trans to this latest outgoing transaction
-	trans=$(echo "$trans" | jq '.[] | select(.direction == "outgoing")')
-			
-	stat=$(echo "$trans" | jq '.status' | tr -d '"') #grab the status field from the transaction data
-	if [ "$stat" = "in_ledger" ]; then #make sure it is not a failed transaction
-		#output the the tx id
-		echo "$trans" | jq '.id' | tr -d '"'
-	fi	
+        #reassign trans to this latest outgoing transaction
+        trans=$(echo "$trans" | jq '[.[] | select(.direction == "outgoing")] | .[0]')
+                        
+        stat=$(echo "$trans" | jq '.status' | tr -d '"') #grab the status field from the transaction data
+        if [ "$stat" = "in_ledger" ]; then #make sure it is not a failed transaction
+                #output the the tx id
+                echo "$trans" | jq '.id' | tr -d '"'
+        fi
 }
+
 
 #make sure the wallet balance is > 3,000,000 lovelace
 function ensureGoodBalance {
@@ -90,7 +90,7 @@ function testWalletSyncStatus {
 
 doggyBowlAddr=$(cat hp-doggy-bowl-address)
 startDate=$(getTimeStamp)
-numPulls=0
+numPulls=1
 
 #check to see if a wallet exists
 walletId=$(grabFirstWallet)
@@ -126,7 +126,7 @@ do
 	numPulls=$((numPulls + 1))
 	echo "Sending pull number $numPulls"
 	echo -e "Wallet balance: $(getBalance "$walletId")\n"
-	sleep 3
+	sleep $((3 + $RANDOM % 10))
 done
 
 
