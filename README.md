@@ -1,7 +1,7 @@
 1) In your Home directory, create a folder called Dev, then <code>cd</code> into the Dev folder, create a folder called HoskyPuller and <code>cd</code> into the HoskyPuller folder.
 
 2) Download HoskyPuller bash scripts into this folder with <code>wget https://github.com/gjorm/HoskyPuller/archive/refs/heads/main.zip</code>. Unzip with <code>unzip main.zip</code>
-	>The zip file that github makes has all of the scripts the 'HoskyPuller-main' folder so the next step is to copy/cut and paste these back into Dev/HoskyPuller
+	>The zip file that github makes has all of the scripts the 'HoskyPuller-main' folder so the next step is to copy/cut and paste these back into ~/Dev/HoskyPuller
 
 3) Download both the cardano-wallet (https://github.com/input-output-hk/cardano-wallet/releases) and cardano-node (https://hydra.iohk.io/job/Cardano/cardano-node/cardano-node-linux/latest-finished) linux pre-built binary files and unzip.
 <ul><blockquote>
